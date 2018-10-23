@@ -1,0 +1,55 @@
+--
+-- For more information on build.settings see the Project Build Settings Guide at:
+-- http://docs.coronalabs.com/guide/distribution/buildSettings/index.html
+--
+
+settings = 
+{
+	orientation =
+	{
+		default = "portrait",
+		supported = { "portrait" }
+	},
+	android =
+	{
+		usesPermissions =
+		{
+			-- This permission starts this app in the background after the device boots up.
+			-- It is needed to display and reschedule all pending notifications after boot up.
+			"android.permission.RECEIVE_BOOT_COMPLETED",
+		},
+	},
+	iphone =
+	{
+		plist =
+		{
+			UILaunchStoryboardName = "LaunchScreen",
+			CFBundleIconFiles =
+			{
+				"Icon-40.png",
+				"Icon-58.png",
+				"Icon-76.png",
+				"Icon-80.png",
+				"Icon-87.png",
+				"Icon-120.png",
+				"Icon-152.png",
+				"Icon-167.png",
+				"Icon-180.png",
+			},
+		},
+	},
+	window =
+	{
+		titleText =
+		{
+			default = "Local Notifications",
+		},
+	},
+	plugins =
+	{
+		["plugin.notifications"] =
+		{
+			publisherId = "com.coronalabs"
+		},
+	},
+}

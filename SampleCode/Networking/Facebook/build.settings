@@ -1,0 +1,81 @@
+--
+-- For more information on build.settings, see the Project Build Settings guide at:
+-- https://docs.coronalabs.com/guide/distribution/buildSettings
+--
+
+-- There are quite a few steps involved in getting an app to work with Facebook, you can start here:
+-- https://docs.coronalabs.com/guide/social/setupFacebook/index.html
+-- (note that the steps are quite different for different operating systems)
+
+-- When you've got your Facebook App ID enter it here:
+local myFacebookAppID = "XXXXXXXXXXXXXXX"
+
+settings =
+{
+	orientation = {
+		default = "portrait",
+		supported = { "portrait", "portraitUpsideDown" }
+	},
+
+	iphone =
+	{
+		plist =
+		{
+			UIApplicationExitsOnSuspend = false,
+
+			CFBundleURLTypes =
+			{
+				{
+					CFBundleURLSchemes =
+					{
+						"fb" .. myFacebookAppID,
+					}
+				}
+			},
+			FacebookAppID = myFacebookAppID,
+
+			UILaunchStoryboardName = "LaunchScreen",
+			CFBundleIconFiles =
+			{
+				"Icon-40.png",
+				"Icon-58.png",
+				"Icon-76.png",
+				"Icon-80.png",
+				"Icon-87.png",
+				"Icon-120.png",
+				"Icon-152.png",
+				"Icon-167.png",
+				"Icon-180.png",
+			},
+			LSApplicationQueriesSchemes =
+			{
+				"fb",  -- Needed for the facebook-v4.isFacebookAppEnabled() API
+				"fbapi",
+				"fbauth2",
+				"fb-messenger-api",
+				"fbshareextension",
+			},
+		},
+	},
+
+	android =
+	{
+		facebookAppId = myFacebookAppID,
+	},
+
+	window =
+	{
+		titleText =
+		{
+			default = "Facebook",
+		},
+	},
+
+	plugins =
+	{
+        ["plugin.facebook.v4a"] =
+        {
+            publisherId = "com.coronalabs",
+        },
+	},
+}
